@@ -22,6 +22,14 @@ const getAvailableSlots = async (req, res) => {
 const createAppointment = async (req, res) => {
     try {
         const { date, time } = req.body;
+        // const appointmentDate = new Date(date);
+
+        // const today = new Date();
+        // today.setHours(0, 0, 0, 0);
+
+        // if (appointmentDate < today) {
+        //     return res.status(400).json({ message: 'Cannot book appointments for past dates.' });
+        // }
 
         const existingAppointment = await Appointment.findOne({ date: new Date(date), time });
         if (existingAppointment) {
